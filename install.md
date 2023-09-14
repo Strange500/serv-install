@@ -42,6 +42,14 @@ rm -R Media-manager-main
 
          media /home/username/media virtiofs defaults 0 0
          manager /home/username/manager virtiofs defaults 0 0
+6. lauchn main.py once in order to create the config files
+      cd /home/username/manager/
+      python3 main.py
+
+7. Complete the config file
+      cd ../.config/Media-Manager
+      nano serv.conf
+      complete every lines with the path of the folder we created before
 
 
 
