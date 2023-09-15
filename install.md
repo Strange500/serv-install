@@ -24,7 +24,7 @@ rm main.zip
 cp -vr Media-manager-main/* .
 rm -R Media-manager-main
 
-4. Configure python env for all OS
+4. Configure python env for all VM (refer to python.md ) 
    https://itslinuxfoss.com/how-to-install-python-on-debian-12/
    replace python-pip by python3-pip
    https://itslinuxfoss.com/install-pip-debian-12/
@@ -40,8 +40,8 @@ rm -R Media-manager-main
        sudo nano /etc/fstab
        write this two lines (replace username with your username ) ( refer to https://sysguides.com/share-files-between-kvm-host-and-linux-guest-using-virtiofs/ ) 
 
-         media /home/username/media virtiofs defaults 0 0
-         manager /home/username/manager virtiofs defaults 0 0
+         media /home/username/shared/media virtiofs defaults 0 0
+         manager /home/username/shared/manager virtiofs defaults 0 0
 6. lauchn main.py once in order to create the config files
       cd /home/username/manager/
       python3 main.py
