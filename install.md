@@ -51,3 +51,12 @@ rm -R Media-manager-main
       cd ../.config/Media-Manager
       nano serv.conf
       complete every lines with the path of the folder we created before ( see server.conf for example )
+
+9. initialize System Unit ( systemd .service )
+   you need your python path, depending of your config there is globally 2 path
+      1. not externally managed it might be /usr/local/bin/pythonX
+      2. is externally managed you can type "whereis python" it should give you this /home/$USER/env/venv/bin/python
+
+   <ol>
+      <li>Create system Unit file <br> nano /etc/systemd/system/media-manager.service</li>
+   </ol>
