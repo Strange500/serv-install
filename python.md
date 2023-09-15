@@ -7,7 +7,7 @@ For 1. you won't need additional steps just do sudo apt install pip
 For 2. you will need to configure an virtual environement for Python
 
 1. sudo apt install python3 python3-pip
-2. install package : sudo pip3 install virtualenv
+2. install package : sudo apt install python3-virtualenv
 3. create a directory to store you venv
    mkdir ~/env
    cd ~/env
