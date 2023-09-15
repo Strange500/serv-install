@@ -5,6 +5,8 @@ After=network.target
 [Service]
 ExecStart=/home/strange/env/venv/bin/python /home/strange/shared/manager/main.py
 WorkingDirectory=/home/strange/shared/manager
+User=strange
+Restart=always
 
 [Install]
 WantedBy=multi-user.target
