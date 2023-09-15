@@ -50,4 +50,4 @@ rm -R Media-manager-main
 8. Complete the config file
       cd ../.config/Media-Manager
       nano serv.conf
-      complete every lines with the path of the folder we created before
+      complete every lines with the path of the folder we created before ( see server.conf for example )
