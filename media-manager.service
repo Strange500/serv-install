@@ -1,0 +1,10 @@
+[Unit]
+Description=Automated media downloader sorter with web api
+After=network.target
+
+[Service]
+ExecStart=/home/strange/env/venv/bin/python /home/strange/shared/manager/main.py
+WorkingDirectory=/home/strange/shared/manager
+
+[Install]
+WantedBy=multi-user.target
