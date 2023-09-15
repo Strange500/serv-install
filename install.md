@@ -28,8 +28,9 @@ rm -R Media-manager-main
    https://itslinuxfoss.com/how-to-install-python-on-debian-12/
    replace python-pip by python3-pip
    https://itslinuxfoss.com/install-pip-debian-12/
+   pip install tmdbsimple psutil qbittorrent-api flask flask-cors flask_socketio bs4 feedparser fuzzywuzzy appdirs python-Levenshtein
 
-5. mount shared folder in vm
+6. mount shared folder in vm
    In virt-manager enable shared memory for each vm
    Then add file system pointing to the folder we ccreated before media and manager
 
@@ -42,22 +43,11 @@ rm -R Media-manager-main
 
          media /home/username/shared/media virtiofs defaults 0 0
          manager /home/username/shared/manager virtiofs defaults 0 0
-6. lauchn main.py once in order to create the config files
+7. launch main.py once in order to create the config files
       cd /home/username/manager/
       python3 main.py
 
-7. Complete the config file
+8. Complete the config file
       cd ../.config/Media-Manager
       nano serv.conf
       complete every lines with the path of the folder we created before
-
-
-
-
-
-
-
-
-
-
-create
