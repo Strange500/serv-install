@@ -58,5 +58,6 @@ rm -R Media-manager-main
       2. is externally managed you can type "whereis python" it should give you this /home/$USER/env/venv/bin/python
 
    <ol>
-      <li>Create system Unit file <br> nano /etc/systemd/system/media-manager.service</li>
+      <li>Create system Unit file <br> sudo nano /etc/systemd/system/media-manager.service</li>
+      <li>Copy media-manager.service in it and replace the path</li>
    </ol>
