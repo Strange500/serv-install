@@ -61,3 +61,9 @@ rm -R Media-manager-main
       <li>Create system Unit file <br> sudo nano /etc/systemd/system/media-manager.service</li>
       <li>Copy media-manager.service in it and replace the path</li>
    </ol>
+
+10. optional init google drive
+
+	install ocamlfuse-google-drive
+	see the github wiki of the repo to use team drive
+
