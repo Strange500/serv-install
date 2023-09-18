@@ -11,9 +11,9 @@ For 2. you will need to configure an virtual environement for Python
 3. create a directory to store you venv
    mkdir ~/env
    cd ~/env
-4.initialize venv
+4.initialize venv <br>
    virtualenv -p python3 venv
-5. activate venv
+5. activate venv <br>
    source venv/bin/activate
    5.1 (optionnal) modify bashrc
      nano ~/.bashrc
