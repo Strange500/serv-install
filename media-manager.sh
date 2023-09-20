@@ -10,6 +10,7 @@ if [ $? -eq 0 ]; then
     echo ""
 else
     echo "Vous devez lancer le script avec les droits sudo"
+    exit
 fi
 while true; do
 
@@ -25,14 +26,13 @@ done
 cd $install_path
 mkdir -p shared shared/media shared/manager
 cp /etc/fstab .
-echo "" >> prout
-echo "media $install_path/shared/media virtiofs defaults 0 0" >> prout
-echo "" >> prout
-echo "manager $install_path/shared/manager virtiofs defaults 0 0" >> prout
+echo "" >> /etc/fstab
+echo "media $install_path/shared/media virtiofs defaults 0 0" >> /etc/fstab
+echo "" >> /etc/fstab
+echo "manager $install_path/shared/manager virtiofs defaults 0 0" >> /etc/fstab
 
 
 
-exit
 
 mkdir env
 apt install python3 python3-pip python3-virtualenv
@@ -48,5 +48,4 @@ echo $install_path
 
 
 exit
-
 
