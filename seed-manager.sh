@@ -85,11 +85,13 @@ add_lines_to_fstab() {
 create_or_update_manager_conf() {
   local install_path="$1"
 
-  # Ask the user for information
-  read -p "Enter the redirect_directory : " redirect_directory
-  read -p "Enter the seed_directory(s) separated by space: " seed_directories
-  read -p "Enter the number_of_bit_max (if seeds execeed this amount file will be deleted): " number_of_bit_max
-  read -p "Enter the day_delay before delete: " day_delay
+  # Define default values
+  local redirect_directory="$install_path/shared/media"
+  local seed_directories="$install_path/shared/media/seed/anime $install_path/shared/media/seed/movie $install_path/shared/media/seed/show"
+
+  # Ask the user for other information
+  read -p "Enter the number_of_bit_max: " number_of_bit_max
+  read -p "Enter the day_delay: " day_delay
   read -p "Enter the qbittorrent_api_host: " qbittorrent_api_host
   read -p "Enter the qbittorrent_api_port: " qbittorrent_api_port
   read -p "Enter the username: " username
