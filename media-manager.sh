@@ -209,6 +209,40 @@ create_or_update_serv_conf() {
   fi
 }
 
+# Function to initialize the systemd service
+initialize_systemd_service() {
+  local install_path="$1"
+  local user="$USER"
+
+  # Define the systemd service unit content
+  local service_content="[Unit]
+Description=Automated media downloader sorter with web api
+After=network.target
+
+[Service]
+ExecStart=$install_path/env/venv/bin/python $install_path/shared/manager/main.py
+WorkingDirectory=$install_path/shared/manager
+User=$user
+Restart=always
+
+[Install]
+WantedBy=multi-user.target"
+
+  # Create the systemd service unit file
+  local service_file="/etc/systemd/system/media-manager.service"
+  echo "$service_content" | sudo tee "$service_file" > /dev/null
+
+  # Reload systemd to reflect changes
+  sudo systemctl daemon-reload
+
+  # Enable and start the service
+  sudo systemctl enable media-manager.service
+  sudo systemctl start media-manager.service
+
+  echo "Systemd service 'media-manager.service' has been initialized and started."
+}
+
+
 
 
 # Verify sudo rights
@@ -228,6 +262,8 @@ add_lines_to_fstab "$install_path"
 
 # Launch the create_or_update_serv_conf function
 create_or_update_serv_conf
+
+initialize_systemd_service "$install_path"
 
 
 echo "Initialization completed in $install_path"
