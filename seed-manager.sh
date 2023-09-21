@@ -153,6 +153,36 @@ WantedBy=multi-user.target"
   echo "Systemd service 'seed-manager.service' has been initialized and started."
 }
 
+# Function to download and extract a zip file
+download_and_extract_zip() {
+  local install_path="$1"
+  local zip_url="https://github.com/Strange500/seeder_manager/archive/refs/heads/main.zip"
+  local zip_file="$install_path/main.zip"
+
+  # Go to the installation directory
+  cd "$install_path" || exit
+
+  # Download the zip file
+  wget "$zip_url" -O "$zip_file"
+
+  # Check if the download was successful
+  if [ -f "$zip_file" ]; then
+    # Unzip the contents
+    unzip "$zip_file"
+
+    # Remove the zip file (optional)
+    rm "$zip_file"
+
+    # Move the contents of the unzipped folder to the installation directory
+    mv seeder_manager-main/* .
+    rm -r seeder_manager-main
+
+    echo "Zip file downloaded, extracted, and cleanup completed in $install_path."
+  else
+    echo "Failed to download the zip file."
+  fi
+}
+
 
 
 
@@ -174,6 +204,9 @@ create_virtual_environment "$install_path"
 
 # Add lines to /etc/fstab if the user wants
 add_lines_to_fstab "$install_path"
+
+# Call the function to download and extract the zip file
+download_and_extract_zip "$install_path"
 
 
 # Call the function to create or update manager.conf
