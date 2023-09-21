@@ -162,6 +162,12 @@ download_and_extract_zip() {
   # Go to the installation directory
   cd "$install_path" || exit
 
+  # Install wget if not already installed
+  if ! command -v wget &>/dev/null; then
+    sudo apt-get update
+    sudo apt-get install wget
+  fi
+
   # Download the zip file
   wget "$zip_url" -O "$zip_file"
 
