@@ -329,6 +329,8 @@ create_or_update_serv_conf
 
 initialize_systemd_service "$install_path"
 
+initialize_team_drive "$install_path"
+
 sudo apt install ffmpeg
 
 
