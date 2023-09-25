@@ -287,12 +287,13 @@ initialize_team_drive() {
 
   if [ "$initialize_team_drive" == "yes" ]; then
     # Execute the commands to install Google Drive OCamlfuse
-    sudo add-apt-repository ppa:alessandro-strada/ppa
-    sudo apt-get update
-    sudo apt-get install google-drive-ocamlfuse
+    wget https://launchpad.net/~alessandro-strada/+archive/ubuntu/ppa/+files/google-drive-ocamlfuse_0.7.30-1ubuntu1_amd64.deb
+    sudo apt install ./google-drive-ocamlfuse_0.7.30-1ubuntu1_amd64.deb
 
     # Ask the user for the name of the drive
     read -p "Enter the name of the drive: " drive_name
+    echo "Now open a web browser, visit the Team Drive, and copy the Team Drive ID. You can get the ID by clicking on your Team Drive and copying the ID from the URL"
+    read -p "press enter when done" dontworry
 
     # Run google-drive-ocamlfuse with the provided drive name
     google-drive-ocamlfuse -label "$drive_name"
