@@ -303,7 +303,7 @@ initialize_team_drive() {
     # Call the function to create GGD directory and service
     create_ggd_directory_and_service "$install_path" "$drive_name"
 
-    echo "Google Drive OCamlfuse installed and initialized."
+    echo "Google Drive OCamlfuse installed and initialized. (to enable GGD you need to update server.conf in ~/.config/Media-Manager"
   else
     echo "Google Drive Team Drive initialization skipped."
   fi
