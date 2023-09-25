@@ -292,11 +292,12 @@ initialize_team_drive() {
 
     # Ask the user for the name of the drive
     read -p "Enter the name of the drive: " drive_name
-    echo "Now open a web browser, visit the Team Drive, and copy the Team Drive ID. You can get the ID by clicking on your Team Drive and copying the ID from the URL"
-    read -p "press enter when done" dontworry
+    
 
     # Run google-drive-ocamlfuse with the provided drive name
     google-drive-ocamlfuse -label "$drive_name"
+    echo "Now open a web browser, visit the Team Drive, and copy the Team Drive ID. You can get the ID by clicking on your Team Drive and copying the ID from the URL paste it in ~/.gdfuse/{label}/config"
+    read -p "press enter when done" dontworry
 
     # Call the function to create GGD directory and service
     create_ggd_directory_and_service "$install_path" "$drive_name"
