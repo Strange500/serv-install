@@ -274,6 +274,7 @@ EOF
 
   # Reload systemd
   sudo systemctl daemon-reload
+  sudo systemctl enable $drive_name
 
   echo "Google Drive Team Drive directory and service created for $drive_name."
 }
