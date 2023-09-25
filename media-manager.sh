@@ -256,25 +256,16 @@ create_ggd_directory_and_service() {
   mkdir -p "$drive_dir"
 
   # Create the service file for the drive
-  local service_file="/etc/systemd/system/$drive_name.service"
+  local service_file="/usr/bin/$drive_name"
   cat <<EOF | sudo tee "$service_file" > /dev/null
-[Unit]
-Description=FUSE filesystem over Google Drive
-After=network.target
-
-[Service]
-ExecStart=google-drive-ocamlfuse -label "$drive_name" "$drive_dir"
-ExecStop=fusermount -u "$drive_dir"
-Restart=always
-Type=forking
-
-[Install]
-WantedBy=default.target
+su $USER -l -c "google-drive-ocamlfuse -label $1 $*"
+exit 0
 EOF
 
-  # Reload systemd
-  sudo systemctl daemon-reload
-  sudo systemctl enable $drive_name
+  sudo chmod +x $service_file
+
+  echo "drive#default $drive_dir fuse  uid=1000,gid=1000,allow_other,user,_netdev 0 0" | sudo tee -a /etc/fstab
+  
 
   echo "Google Drive Team Drive directory and service created for $drive_name."
 }
