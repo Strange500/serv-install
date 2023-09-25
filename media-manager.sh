@@ -243,7 +243,7 @@ WantedBy=multi-user.target"
 }
 
 
-
+sudo apt install ffmpeg
 
 # Verify sudo rights
 verify_sudo_rights
