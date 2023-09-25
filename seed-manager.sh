@@ -86,7 +86,7 @@ create_or_update_manager_conf() {
   local install_path="$1"
 
   # Define default values
-  local redirect_directory="$install_path/shared/media"
+  local redirect_directory="$install_path/shared/media/sorter"
   local seed_directories="$install_path/shared/media/seed/anime $install_path/shared/media/seed/movie $install_path/shared/media/seed/show"
 
   # Ask the user for other information
