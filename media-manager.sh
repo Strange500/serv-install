@@ -242,8 +242,72 @@ WantedBy=multi-user.target"
   echo "Systemd service 'media-manager.service' has been initialized and started."
 }
 
+# Function to create Google Drive Team Drive directory and service
+create_ggd_directory_and_service() {
+  local install_path="$1"
+  local drive_name="$2"
 
-sudo apt install ffmpeg
+  # Create GGD directory in install path
+  local ggd_dir="$install_path/GGD"
+  mkdir -p "$ggd_dir"
+
+  # Create a directory with the specified drive name under GGD
+  local drive_dir="$ggd_dir/$drive_name"
+  mkdir -p "$drive_dir"
+
+  # Create the service file for the drive
+  local service_file="/etc/systemd/system/$drive_name.service"
+  cat <<EOF | sudo tee "$service_file" > /dev/null
+[Unit]
+Description=FUSE filesystem over Google Drive
+After=network.target
+
+[Service]
+ExecStart=google-drive-ocamlfuse -label "$drive_name" "$drive_dir"
+ExecStop=fusermount -u "$drive_dir"
+Restart=always
+Type=forking
+
+[Install]
+WantedBy=default.target
+EOF
+
+  # Reload systemd
+  sudo systemctl daemon-reload
+
+  echo "Google Drive Team Drive directory and service created for $drive_name."
+}
+
+# Function to initialize Google Drive Team Drive (if desired)
+initialize_team_drive() {
+  local install_path="$1"
+
+  # Ask the user if they want to initialize Team Drive
+  read -p "Do you want to initialize Google Drive Team Drive? (yes/no): " initialize_team_drive
+
+  if [ "$initialize_team_drive" == "yes" ]; then
+    # Execute the commands to install Google Drive OCamlfuse
+    sudo add-apt-repository ppa:alessandro-strada/ppa
+    sudo apt-get update
+    sudo apt-get install google-drive-ocamlfuse
+
+    # Ask the user for the name of the drive
+    read -p "Enter the name of the drive: " drive_name
+
+    # Run google-drive-ocamlfuse with the provided drive name
+    google-drive-ocamlfuse -label "$drive_name"
+
+    # Call the function to create GGD directory and service
+    create_ggd_directory_and_service "$install_path" "$drive_name"
+
+    echo "Google Drive OCamlfuse installed and initialized."
+  else
+    echo "Google Drive Team Drive initialization skipped."
+  fi
+}
+
+
+
 
 # Verify sudo rights
 verify_sudo_rights
@@ -264,6 +328,8 @@ add_lines_to_fstab "$install_path"
 create_or_update_serv_conf
 
 initialize_systemd_service "$install_path"
+
+sudo apt install ffmpeg
 
 
 echo "Initialization completed in $install_path"
