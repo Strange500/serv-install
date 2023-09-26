@@ -123,6 +123,12 @@ create_or_update_serv_conf() {
       download_dir="$install_path"
     fi
 
+    # select word
+    select_word_rss=VOSTFR
+    echo "select_word_rss = $select_word_rss"
+    banned_words_rss=ENG,FRENCH
+    echo "banned_words_rss = $banned_words_rss"
+
     # TMDB_API_KEY
     read -p "Enter your TMDB API key (won't work without, leave empty to skip): " tmdb_api_key
     if [ -n "$tmdb_api_key" ]; then
@@ -183,6 +189,10 @@ create_or_update_serv_conf() {
     
     echo "Downloader = TRUE" >> "$serv_conf_path"
     echo "download_dir = $download_dir" >> "$serv_conf_path"
+
+    echo "select_word_rss = $select_word_rss" >> "$serv_conf_path"
+
+    echo "banned_words_rss = $banned_words_rss" >> "$serv_conf_path"
     
 
     if [ -n "$tmdb_api_key" ]; then
