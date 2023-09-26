@@ -190,7 +190,7 @@ create_or_update_serv_conf() {
     echo "Downloader = TRUE" >> "$serv_conf_path"
     echo "download_dir = $download_dir" >> "$serv_conf_path"
 
-    echo "select_word_rss = $select_word_rss" >> "$serv_conf_path"
+    echo "select_words_rss = $select_word_rss" >> "$serv_conf_path"
 
     echo "banned_words_rss = $banned_words_rss" >> "$serv_conf_path"
     
