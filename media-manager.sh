@@ -58,7 +58,7 @@ create_virtual_environment() {
 
   source venv/bin/activate
 
-  pip install tmdbsimple psutil qbittorrent-api flask flask-cors flask_socketio bs4 feedparser fuzzywuzzy appdirs python-Levenshtein
+  pip install tmdbsimple psutil qbittorrent-api flask flask-cors flask_socketio bs4 feedparser fuzzywuzzy appdirs python-Levenshtein thefuzz
 }
 
 # Function to add lines to /etc/fstab
